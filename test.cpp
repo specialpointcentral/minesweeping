@@ -1,9 +1,16 @@
+/*
+BRANCH2
+特性
+保证了刷新频率，不会出现刷新频率过快问题，修复BUG 
+Processed:16/11/30 21:46 
+*/
 #include<stdio.h>
 #include<windows.h>
 #include<time.h>// 根据时间推测随机数，用时间当随机数种子 
 #include<stdlib.h>//srand函数包含库  
 int main()
 {
+	SetConsoleTitle("扫雷");//更改标题 
 	int LoadMap (int map[10][10],int bomb[10][10]);
 	int ClickData (int *x,int *y,int *types);
 	int DataProcess (int x, int y,int types,int map[10][10],int bomb[10][10]);
@@ -129,6 +136,7 @@ int DataProcess (int x, int y,int types,int map[10][10],int bomb[10][10])
 	{
 		if(types==1)
 		{//左击 
+			if(map[y][x]==-2)return 0; //防止插旗点击 
 			if(bomb[y][x]==1)//判断是否是地雷 
 			{
 				BombShow (map,bomb);//显示地雷 
